@@ -3,7 +3,9 @@ import { cn } from "@/lib/utils";
 
 /**
  * Input component props
+ * Extends standard HTML input attributes
  */
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {}
 

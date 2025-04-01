@@ -399,7 +399,7 @@ export default function CoursesPage() {
           <div className="text-center space-y-4">
             <h2 className="font-serif text-5xl font-bold tracking-tight">Programming Languages Offerings</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto font-light">
-              Explore our comprehensive curriculum covering today's most in-demand programming languages and technologies.
+              Explore our comprehensive curriculum covering today&apos;s most in-demand programming languages and technologies.
             </p>
           </div>
 

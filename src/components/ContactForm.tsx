@@ -18,14 +18,6 @@ interface FormData {
 }
 
 /**
- * Error interface from Supabase
- */
-interface SupabaseError {
-  message: string;
-  [key: string]: any;
-}
-
-/**
  * Initial empty form state
  */
 const initialFormData: FormData = {
@@ -121,7 +113,7 @@ export default function ContactForm() {
       // Clear form and show success message
       setFormSuccess("Thank you for your message! We'll get back to you soon.");
       setFormData(initialFormData);
-    } catch (error: SupabaseError | Error | unknown) {
+    } catch (error) {
       console.error("Error submitting form:", error);
       let errorMessage = "Failed to submit the form. Please try again later.";
 
