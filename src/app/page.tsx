@@ -1,103 +1,261 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+
+/**
+ * Newsletter subscription form component
+ * @returns Newsletter subscription form JSX
+ */
+function NewsletterForm() {
+  // Form state
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [message, setMessage] = useState('');
+
+  /**
+   * Handle form submission
+   * @param e Form submit event
+   */
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Reset status
+    setStatus('loading');
+    setMessage('');
+
+    try {
+      // Send request to API
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus('success');
+        setMessage(data.message || 'Successfully subscribed!');
+        setEmail(''); // Clear form
+      } else {
+        setStatus('error');
+        setMessage(data.error || 'Failed to subscribe. Please try again.');
+      }
+    } catch (error) {
+      setStatus('error');
+      setMessage('An unexpected error occurred. Please try again later.');
+      console.error('Newsletter subscription error:', error);
+    }
+  };
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="max-w-xl mx-auto text-center space-y-4">
+      <h2 className="text-2xl font-serif font-bold tracking-tight md:text-3xl">Stay Updated with Our Newsletter</h2>
+      <p className="text-muted-foreground">
+        Subscribe to receive the latest updates on new courses, tech trends, and exclusive learning resources.
+      </p>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <form onSubmit={handleSubmit} className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <div className="flex-1 min-w-0">
+          <label htmlFor="email-subscription" className="sr-only">Email address</label>
+          <input
+            type="email"
+            id="email-subscription"
+            placeholder="Your email address"
+            className="w-full h-12 px-6 py-3 rounded-l-full sm:rounded-r-none rounded-r-full border border-border focus:outline-none focus:ring-2 focus:ring-primary/50"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            disabled={status === 'loading'}
+          />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        <Button
+          type="submit"
+          className="h-12 rounded-l-full sm:rounded-l-none rounded-r-full whitespace-nowrap px-6 font-medium"
+          disabled={status === 'loading'}
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
+        </Button>
+      </form>
+
+      {status === 'success' && (
+        <p className="text-sm text-green-600 mt-2">
+          {message}
+        </p>
+      )}
+
+      {status === 'error' && (
+        <p className="text-sm text-red-600 mt-2">
+          {message}
+        </p>
+      )}
+
+      <p className="text-xs text-muted-foreground">
+        By subscribing, you agree to our Privacy Policy and consent to receive updates from our company.
+      </p>
     </div>
+  );
+}
+
+/**
+ * Home page component
+ * @returns Home page JSX
+ */
+export default function HomePage() {
+  return (
+    <>
+      {/* Hero section */}
+      <section className="w-full py-16 md:py-28 lg:py-36 bg-primary text-primary-foreground">
+        <div className="container px-4 md:px-6">
+          <div className="flex flex-col items-center gap-6 text-center">
+            <h1 className="font-serif text-4xl font-bold tracking-tight leading-tight sm:text-5xl md:text-6xl lg:text-7xl">
+              Transform Your Career with <span className="italic">Industry-Driven</span> Training
+
+            </h1>
+            <p className="max-w-[700px] text-lg text-primary-foreground/90 md:text-xl font-light leading-relaxed">
+              Discover our cutting-edge courses and services designed to elevate your learning experience and transform your career potential.
+            </p>
+            <div className="flex flex-col gap-3 min-[400px]:flex-row mt-4">
+              <Button variant="secondary" asChild size="lg" className="font-medium rounded-full px-8">
+                <Link href="/courses">Explore Courses</Link>
+              </Button>
+              <Button variant="outline" className="border-primary-foreground/20 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20 font-medium rounded-full px-8" asChild size="lg">
+                <Link href="/contact">Contact Us</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features section */}
+      <section className="w-full py-16 md:py-24">
+        <div className="container px-4 md:px-6">
+          <div className="text-center mb-12">
+            <h2 className="font-serif text-3xl font-bold tracking-tight md:text-4xl">Why Choose Syncronata</h2>
+            <p className="mt-4 text-muted-foreground max-w-2xl mx-auto font-light">
+              Our commitment to excellence and innovation sets us apart in the educational landscape.
+            </p>
+          </div>
+          <div className="grid gap-8 px-4 md:px-6 lg:grid-cols-3 lg:gap-12">
+            <div className="space-y-3 text-center">
+              <div className="mx-auto bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-primary"
+                >
+                  <path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z" />
+                  <path d="M10 2c1 .5 2 2 2 5" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-serif font-bold">Quality Education</h3>
+              <p className="text-muted-foreground">
+                Our courses are meticulously crafted by industry experts with years of practical experience.
+              </p>
+            </div>
+            <div className="space-y-3 text-center">
+              <div className="mx-auto bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-primary"
+                >
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+                  <path d="m9 12 2 2 4-4" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-serif font-bold">Innovative Approach</h3>
+              <p className="text-muted-foreground">
+                We leverage cutting-edge technologies and methodologies to create engaging and effective learning experiences.
+              </p>
+            </div>
+            <div className="space-y-3 text-center">
+              <div className="mx-auto bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-primary"
+                >
+                  <circle cx="12" cy="8" r="5" />
+                  <path d="M20 21a8 8 0 0 0-16 0" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-serif font-bold">Career Support</h3>
+              <p className="text-muted-foreground">
+                Our dedicated team provides comprehensive guidance and resources to help you advance your career goals.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonial section */}
+      <section className="w-full py-16 bg-secondary">
+        <div className="container px-4 md:px-6">
+          <div className="text-center mb-12">
+            <h2 className="font-serif text-3xl font-bold tracking-tight md:text-4xl">What Our Students Say</h2>
+            <p className="mt-4 text-muted-foreground max-w-2xl mx-auto font-light">
+              Hear from our community of learners who have transformed their careers through our programs.
+            </p>
+          </div>
+          <div className="max-w-3xl mx-auto text-center">
+            <blockquote className="italic text-xl md:text-2xl font-serif text-foreground/80">
+              &ldquo;Syncronata&apos;s courses completely transformed my approach to learning. The instructors are top-notch and the curriculum is designed with real-world applications in mind.&rdquo;
+            </blockquote>
+            <div className="mt-6">
+              <p className="font-medium">Maria Rodriguez</p>
+              <p className="text-sm text-muted-foreground">Data Science Graduate</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA section */}
+      <section className="bg-muted py-16 md:py-20">
+        <div className="container px-4 md:px-6">
+          <div className="flex flex-col items-center text-center">
+            <h2 className="text-3xl font-serif font-bold tracking-tight md:text-4xl">Ready to start your learning journey?</h2>
+            <p className="mt-4 max-w-[700px] text-lg text-muted-foreground font-light">
+              Join thousands of students who are already benefiting from our courses and transforming their careers.
+            </p>
+            <Button className="mt-8 rounded-full px-8" size="lg" asChild>
+              <Link href="/courses">Get Started Today</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter subscription section */}
+      <section className="w-full py-16 md:py-20 bg-primary/5">
+        <div className="container px-4 md:px-6">
+          <NewsletterForm />
+        </div>
+      </section>
+    </>
   );
 }

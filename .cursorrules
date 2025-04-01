@@ -1,0 +1,346 @@
+# Cursor Rules Configuration
+
+## PROJECT DESCRIPTION
+# **Syncronota Website Documentation**
+
+---
+
+## **Purpose**
+- Showcase company details
+- Highlight courses offered
+- Provide company information and contact details
+- Create a professional online presence
+
+---
+
+## **Website Structure and Pages**
+
+### **Home Page**
+- Company mission statement
+- Brief overview of services
+- Featured courses
+- Call-to-action buttons
+- Hero section with compelling visual
+
+### **About Us Page**
+- Company history
+- Vision and mission
+- Team introduction
+- Company values
+- Achievements and milestones
+
+### **Courses Page**
+- Comprehensive list of courses
+- Course categories
+- Detailed course descriptions
+- Course duration
+- Learning outcomes
+- Pricing information (if applicable)
+
+### **Services Page**
+- Detailed explanation of services offered
+- Individual service breakdowns
+- Benefits and unique selling points
+
+### **Contact Page**
+- Contact form
+- Company contact information
+- Physical address
+- Email address
+- Phone numbers
+- Google Maps integration
+- Social media links
+
+---
+
+## **Technical Requirements**
+
+### **Frontend Technologies**
+- React.js or Next.js for modern, responsive design
+- Tailwind CSS for styling
+- Motion : for reactive and smooth UI elements
+- Responsive mobile-first approach
+
+### **Backend Considerations**
+- Node.js for backend logic
+- Supabase for database management
+- API endpoints for contact form submissions
+
+### **Essential Features**
+- Responsive design
+- Fast loading times
+- SEO optimization
+- Accessibility compliance
+- SSL certification
+- Performance optimization
+
+### **Recommended Tech Stack**
+- **Frontend:** React.js / Next.js
+- **Styling:** Tailwind CSS
+- **Backend:** Node.js
+- **Database:** Supabase
+- **Hosting:** Vercel
+- **Version Control:** GitHub
+
+---
+
+## **Syncronota Website Structure**
+
+### **1. Navbar Components**
+**[Logo] | Home | About Us | Courses | Services | Contact | [CTA Button]**
+
+#### **Navbar Detailed Breakdown**
+1. **Logo**
+   - Company logo (top left)
+   - Clickable, returns to homepage
+   - Responsive sizing
+2. **Navigation Menu Items**
+   - Home
+   - About Us
+   - Courses
+   - Services
+   - Contact
+3. **Call-to-Action (CTA) Button**
+   - "Enroll Now" or "Get Started"
+   - Contrasting color
+   - Linked to course registration or contact page
+
+---
+
+### **2. Home Page Layout**
+#### **2.1 Hero Section**
+- Full-width banner
+- **Headline:** "Empowering Learning Through Innovative Solutions"
+- **Subheadline:** Brief company value proposition
+- Two CTA Buttons:
+  1. "Explore Courses"
+  2. "Contact Us"
+- Background: Professional image or video showcasing learning/technology
+
+#### **2.2 Features/Services Quick Overview**
+- 3-4 card layout
+- Each card represents a key service/feature
+- Icons representing each service
+- Short description
+- "Learn More" links
+
+#### **2.3 Featured Courses Section**
+- Carousel or grid of top courses
+- Course thumbnails
+- Course titles
+- Short description
+- Duration
+- "View Course" buttons
+
+#### **2.4 Why Choose Syncronota Section**
+- Value proposition highlights
+- Unique selling points
+- Icons or illustrations
+- Testimonial snippets
+
+#### **2.5 Company Achievements**
+- Statistics section
+- Number of courses
+- Total students
+- Years in business
+- Success rate
+
+#### **2.6 Testimonials**
+- Client/student testimonial carousel
+- Quotes
+- Participant names
+- Photos (optional)
+
+#### **2.7 Latest News/Blog (Optional)**
+- 3 recent blog posts or news items
+- Thumbnails
+- Titles
+- Short excerpts
+- "Read More" links
+
+#### **2.8 Pre-Footer CTA**
+- Full-width section
+- Motivational message
+- Large CTA button encouraging course enrollment
+
+---
+
+### **3. About Us Page Layout**
+#### **3.1 Company Story Section**
+- Mission statement
+- Company history
+- Founding story
+- Vision and values
+
+#### **3.2 Team Section**
+- Leadership team photos
+- Names
+- Roles
+- Short bios
+- Professional achievements
+
+#### **3.3 Our Journey Timeline**
+- Milestone achievements
+- Company growth stages
+- Key developments
+
+#### **3.4 Company Culture**
+- Work environment photos
+- Team activities
+- Core values visualization
+
+---
+
+### **4. Courses Page Layout**
+#### **4.1 Course Categories**
+- Dropdown or grid of course categories
+- Filter options
+- Search functionality
+
+#### **4.2 Course Listing**
+- Course cards with:
+  - Thumbnail image
+  - Course title
+  - Brief description
+  - Duration
+  - Difficulty level
+  - Price (if applicable)
+  - "Enroll" button
+
+#### **4.3 Course Details (Individual Course Page)**
+- Detailed course overview
+- Curriculum breakdown
+- Learning outcomes
+- Instructor information
+- Course duration
+- Prerequisites
+- Pricing
+- Enrollment button
+
+---
+
+### **5. Services Page Layout**
+#### **5.1 Services Overview**
+- Grid or list of services
+- Detailed descriptions
+- Benefits
+- Iconography
+- Use cases
+
+#### **5.2 Service Breakdown**
+- Individual service pages
+- Comprehensive details
+- Pricing (if applicable)
+- Consultation CTA
+
+---
+
+### **6. Contact Page Layout**
+#### **6.1 Contact Form**
+- Name field
+- Email field
+- Phone number
+- Inquiry type dropdown
+- Message textarea
+- Submit button
+
+#### **6.2 Contact Information**
+- Physical address
+- Phone numbers
+- Email addresses
+- Business hours
+- Google Maps integration
+
+#### **6.3 Social Media Links**
+- LinkedIn
+- Facebook
+- Twitter/X
+- Instagram
+
+---
+
+### **7. Footer**
+#### **7.1 Quick Links**
+- Home
+- About
+- Courses
+- Services
+- Contact
+- Privacy Policy
+- Terms of Service
+
+#### **7.2 Newsletter Signup**
+- Email input
+- Subscribe button
+
+#### **7.3 Contact Information**
+- Company address
+- Contact numbers
+- Email
+
+#### **7.4 Copyright**
+- © 2024 Syncronota. All Rights Reserved
+
+---
+
+### **8. Responsive Considerations**
+- Mobile-friendly design
+- Hamburger menu for small screens
+- Adaptive layouts
+- Touch-friendly elements
+
+## General Settings
+- Never implement more than what I ask for
+- Keep any new ideas you have at the end of the prompt
+- Dont add new stuff  without my knowledge
+- Keep fixing the error till it clears out
+- Clear all linter errors before finishing the prompt
+
+## Code Formatting
+- I need proper indentation for better readability
+- dont clutter the code in order to reduce lines
+- Keep  it clean and open to read easily
+
+## Linting Rules
+- Check the packages and check the proper versions
+- Dont ignore any sort of linter  errors
+- Handle them in such  a way it doesnt break anything
+- Think of two or three  different approaches before you fix any error
+- Go for the best possible one on your own without asking me
+
+## Editor Behavior
+- Keep the code easier to read
+- ADD COMMENTS EVERYWHERE
+- ADD COMMENTS FOR EACH FUNCTIONALITY
+- ADD COMMENTS SO THAT ITS EASIER FOR ANYONE TO GO THROUGH IT
+
+## File Handling
+- Dont delete the files without proper checking before deleting
+- Dont delete any file without checking where its used elesewhere, so the project doesnt break
+- Delete only if its completely unnecessary
+- Delete the folders which are left empty
+- Delete ONLY IF NECESSARY AND SERVES NO PURPOSE
+
+## Extensions
+# Configure extension settings
+# Examples: enable/disable, custom settings, etc.
+
+## Keybindings
+# Define custom keyboard shortcuts
+# Examples: command mappings, etc.
+
+## Project-Specific Settings
+- Use MCP tools
+- Use Supabase MCP to run SQL commands yourself
+- Use sequential thinking to elaborate your way of thinking
+- Use Github to keep a version track after when I ask you to commit
+
+### APIs
+
+## AI Assistant Preferences
+- Begin the prompt with  " 🤖 : " always
+- Explain first on how you are going to approach my prompt
+- If we are moving with a problem first write down 3 paragraphs about how it can be approached
+- Solve the problem according to the best possible approach
+- After solving or editing, Explain in detail or short according to how its needed using bullet points
+- Explain the complete technical approach at the end
